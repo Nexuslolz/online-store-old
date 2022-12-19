@@ -2,6 +2,10 @@ const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const EslintPlugin = require('eslint-webpack-plugin');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+
+const isProduction = process.env.NODE_ENV === 'production';
+const stylesHandler = isProduction ? MiniCssExtractPlugin.loader : 'style-loader';
 
 module.exports = {
     mode: 'development',
@@ -26,8 +30,8 @@ module.exports = {
                 use: ['style-loader', 'css-loader'],
             },
             {
-                test: /\.s[ac]ss$/,
-                use: ['style-loader', 'sass-loader'],
+                test: /.s[ac]ss$/,
+                use: [stylesHandler, 'css-loader', 'sass-loader'],
             },
             {
                 test: /\.(png|jpg|svg|gif)$/,
@@ -51,5 +55,6 @@ module.exports = {
         }),
         new CleanWebpackPlugin(),
         new EslintPlugin({ extensions: 'ts' }),
+        new MiniCssExtractPlugin(),
     ],
 };

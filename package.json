@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "team-work project for RSschool",
   "main": "index.js",
+  "private": true,
   "scripts": {
     "dev": "webpack --mode development",
     "build": "webpack --mode production",
@@ -42,6 +43,8 @@
     "eslint-webpack-plugin": "^3.2.0",
     "file-loader": "^6.2.0",
     "html-webpack-plugin": "^5.5.0",
+    "mini-css-extract-plugin": "^2.7.2",
+    "node-sass": "^8.0.0",
     "sass": "^1.56.2",
     "sass-loader": "^13.2.0",
     "style-loader": "^3.3.1",
@@ -53,6 +56,7 @@
     "webpack-dev-server": "^4.11.1"
   },
   "dependencies": {
+    "normalize.css": "^8.0.1",
     "prettier": "^2.8.1"
   }
 }
