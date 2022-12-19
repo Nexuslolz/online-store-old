@@ -14,7 +14,7 @@ class Header extends Component {
             'logo__img',
             'logo-img',
             '#main-page',
-            '../src/assets/icons/logo.svg',
+            'https://raw.githubusercontent.com/Nexuslolz/online-store/c1d9aad2ad77ae838eb8eaa035d53f81c6d72eb0/src/assets/icons/logo.svg?token=AUOQGHHFSJUTYKS4NQYSEHDDUCYQ2',
             false,
             'logo'
         );
@@ -27,7 +27,7 @@ class Header extends Component {
             'box__img',
             'box-img',
             '#box-page',
-            '../src/assets/icons/basket.png',
+            'https://raw.githubusercontent.com/Nexuslolz/online-store/assets/src/assets/icons/basket.png?token=GHSAT0AAAAAABU3JU5M23TIPM3MICFWERFYY5AWFMA',
             false
         );
         const boxInfo = document.createElement('p') as HTMLParagraphElement;
