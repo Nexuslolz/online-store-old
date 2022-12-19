@@ -18,7 +18,7 @@ class Footer extends Component {
             'footer__img',
             'Sasha-gh',
             'https://github.com/Nexuslolz',
-            'https://raw.githubusercontent.com/Nexuslolz/online-store/c1d9aad2ad77ae838eb8eaa035d53f81c6d72eb0/src/assets/icons/GitHub.svg?token=AUOQGHGF3WYMNPELTN6F52DDUCYQO',
+            'https://raw.githubusercontent.com/Nexuslolz/online-store/assets/src/assets/icons/GitHub.svg?token=GHSAT0AAAAAABU3JU5MUEL7YL5PGOX4F2I4Y5AWOVQ',
             true
         );
         const gh2: HTMLElement = this.createElement(
@@ -30,7 +30,7 @@ class Footer extends Component {
             'footer__img',
             'Marina-gh',
             'https://github.com/Astafyeva-Marina',
-            'https://raw.githubusercontent.com/Nexuslolz/online-store/c1d9aad2ad77ae838eb8eaa035d53f81c6d72eb0/src/assets/icons/GitHub.svg?token=AUOQGHGF3WYMNPELTN6F52DDUCYQO',
+            'https://raw.githubusercontent.com/Nexuslolz/online-store/assets/src/assets/icons/GitHub.svg?token=GHSAT0AAAAAABU3JU5MUEL7YL5PGOX4F2I4Y5AWOVQ',
             true
         );
         const courseLink: HTMLElement = this.createElement(
@@ -42,7 +42,7 @@ class Footer extends Component {
             'footer__img',
             'JS course',
             'https://rs.school/js/',
-            'https://raw.githubusercontent.com/Nexuslolz/online-store/c1d9aad2ad77ae838eb8eaa035d53f81c6d72eb0/src/assets/icons/rs_school_js-logo.svg?token=AUOQGHBQ5VVSTFWOGPVSSKTDUCYQS',
+            'https://raw.githubusercontent.com/Nexuslolz/online-store/assets/src/assets/icons/rs_school_js-logo.svg?token=GHSAT0AAAAAABU3JU5MNJOFOTZZLAECOLJAY5AWONQ',
             true
         );
 

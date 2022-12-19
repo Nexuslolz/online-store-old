@@ -14,7 +14,7 @@ class Header extends Component {
             'logo__img',
             'logo-img',
             '#main-page',
-            'https://raw.githubusercontent.com/Nexuslolz/online-store/c1d9aad2ad77ae838eb8eaa035d53f81c6d72eb0/src/assets/icons/logo.svg?token=AUOQGHHFSJUTYKS4NQYSEHDDUCYQ2',
+            'https://raw.githubusercontent.com/Nexuslolz/online-store/assets/src/assets/icons/logo.svg?token=GHSAT0AAAAAABU3JU5NEZWSPMUMTRXYU7DEY5AWOBQ',
             false,
             'logo'
         );
@@ -27,7 +27,7 @@ class Header extends Component {
             'box__img',
             'box-img',
             '#box-page',
-            'https://raw.githubusercontent.com/Nexuslolz/online-store/assets/src/assets/icons/basket.png?token=GHSAT0AAAAAABU3JU5M23TIPM3MICFWERFYY5AWFMA',
+            'https://raw.githubusercontent.com/Nexuslolz/online-store/assets/src/assets/icons/basket.png?token=GHSAT0AAAAAABU3JU5NQYUSAFYZB232RKPUY5AWNAA',
             false
         );
         const boxInfo = document.createElement('p') as HTMLParagraphElement;
