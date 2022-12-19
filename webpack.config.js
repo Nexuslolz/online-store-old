@@ -14,6 +14,7 @@ module.exports = {
         filename: 'index.js',
         path: path.resolve(__dirname, './dist'),
         clean: true,
+        assetModuleFilename: 'assets/[name].[ext]',
     },
     resolve: {
         extensions: ['.js', '.json', '.ts'],
@@ -34,8 +35,9 @@ module.exports = {
                 use: [stylesHandler, 'css-loader', 'sass-loader'],
             },
             {
-                test: /\.(png|jpg|svg|gif)$/,
+                test: /\.(png|jpg|svg|gif)$/i,
                 use: ['file-loader'],
+                type: 'asset/resource',
             },
             {
                 test: /\.(ttf|woff|woff2|eot)$/,
