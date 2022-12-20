@@ -1,0 +1,16 @@
+// @import './variables.scss';
+
+.container {
+    display: grid;
+    grid-template-columns: 1fr 3fr;
+    width: 100%;
+    height: 100%;
+    border: 2px solid blue;
+}
+
+.container-left{
+    border: 2px solid red;
+}
+.container-right{
+    border: 2px solid green;
+}
