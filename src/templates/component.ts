@@ -1,7 +1,7 @@
 abstract class Component {
     protected container: HTMLElement;
     constructor(tagName: string, className: string) {
-        this.container = document.createElement(tagName);
+        this.container = document.createElement(tagName) as HTMLElement;
         this.container.classList.add(className);
     }
 
@@ -46,7 +46,7 @@ abstract class Component {
         console.log('not implemented');
     }
 
-    render() {
+    render(): HTMLElement {
         return this.container;
     }
 }
