@@ -1,4 +1,6 @@
 import Component from '../../templates/component';
+import logotype from '../../assets/icons/logo.svg';
+import basket from '../../assets/icons/basket.png';
 
 class Header extends Component {
     constructor(tagName: string, className: string) {
@@ -14,7 +16,7 @@ class Header extends Component {
             'logo__img',
             'logo-img',
             '#main-page',
-            'https://raw.githubusercontent.com/Nexuslolz/online-store/assets/src/assets/icons/logo.svg?token=GHSAT0AAAAAABU3JU5NEZWSPMUMTRXYU7DEY5AWOBQ',
+            `${logotype}`,
             false,
             'logo'
         );
@@ -27,9 +29,11 @@ class Header extends Component {
             'box__img',
             'box-img',
             '#box-page',
-            'https://raw.githubusercontent.com/Nexuslolz/online-store/assets/src/assets/icons/basket.png?token=GHSAT0AAAAAABU3JU5NQYUSAFYZB232RKPUY5AWNAA',
-            false
+            `${basket}`,
+            false,
+            'box'
         );
+
         const boxInfo = document.createElement('p') as HTMLParagraphElement;
         boxInfo.classList.add('page-header__info');
         const price = document.createElement('span') as HTMLSpanElement;
@@ -37,6 +41,11 @@ class Header extends Component {
         price.textContent = `0$`;
         boxInfo.textContent = `Total price: ${price.textContent}`;
 
+        const amount = document.createElement('p') as HTMLParagraphElement;
+        amount.classList.add('box__amount');
+        amount.textContent = `0`;
+
+        box.append(amount);
         this.container.append(logo);
         this.container.append(boxInfo);
         this.container.append(box);
