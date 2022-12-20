@@ -1,4 +1,6 @@
 import Component from '../../templates/component';
+import ghLogo from '../../assets/icons/GitHub.svg';
+import rsLogo from '../../assets/icons/rs_school_js-logo.svg';
 
 class Footer extends Component {
     constructor(tagName: string, className: string) {
@@ -18,7 +20,7 @@ class Footer extends Component {
             'footer__img',
             'Sasha-gh',
             'https://github.com/Nexuslolz',
-            'https://raw.githubusercontent.com/Nexuslolz/online-store/assets/src/assets/icons/GitHub.svg?token=GHSAT0AAAAAABU3JU5MUEL7YL5PGOX4F2I4Y5AWOVQ',
+            `${ghLogo}`,
             true
         );
         const gh2: HTMLElement = this.createElement(
@@ -30,7 +32,7 @@ class Footer extends Component {
             'footer__img',
             'Marina-gh',
             'https://github.com/Astafyeva-Marina',
-            'https://raw.githubusercontent.com/Nexuslolz/online-store/assets/src/assets/icons/GitHub.svg?token=GHSAT0AAAAAABU3JU5MUEL7YL5PGOX4F2I4Y5AWOVQ',
+            `${ghLogo}`,
             true
         );
         const courseLink: HTMLElement = this.createElement(
@@ -42,7 +44,7 @@ class Footer extends Component {
             'footer__img',
             'JS course',
             'https://rs.school/js/',
-            'https://raw.githubusercontent.com/Nexuslolz/online-store/assets/src/assets/icons/rs_school_js-logo.svg?token=GHSAT0AAAAAABU3JU5MNJOFOTZZLAECOLJAY5AWONQ',
+            `${rsLogo}`,
             true
         );
 
@@ -52,10 +54,10 @@ class Footer extends Component {
 
         wrapper.append(gh1);
         wrapper.append(gh2);
-        wrapper.append(prodInfo);
-        wrapper.append(courseLink);
 
         this.container.append(wrapper);
+        this.container.append(prodInfo);
+        this.container.append(courseLink);
     }
 
     render(): HTMLElement {
