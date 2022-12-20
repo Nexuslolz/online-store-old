@@ -1,7 +1,7 @@
 import Page from '../../templates/page';
 
 export const enum ErrorTypes {
-    Error_404 = 404,
+    Error_404 = '404 NOT FOUND',
 }
 
 class ErrorPage extends Page {
@@ -13,8 +13,9 @@ class ErrorPage extends Page {
     }
 
     createErrorTitle(): void {
-        const mainContent = document.querySelector('header') as HTMLElement;
-        mainContent.innerHTML = `${this.errorType}`;
+        const errHeader = document.createElement('h1') as HTMLElement;
+        errHeader.textContent = `${this.errorType}`;
+        this.container.append(errHeader);
     }
 
     render(): HTMLElement {
