@@ -20,11 +20,11 @@ class App {
     private static defaultPageId = 'current-page';
 
     static renderNewPage(idPage: string): void {
-        const currentPageHTML = document.querySelector(`${App.defaultPageId}`);
+        const currentPageHTML = document.querySelector(`#${App.defaultPageId}`);
         if (currentPageHTML) {
             currentPageHTML.remove();
         }
-        let page: Page | null;
+        let page: Page | null = null;
         if (idPage === 'main-page') {
             page = new MainPage(idPage);
         } else if (idPage === 'box-page') {
@@ -38,11 +38,13 @@ class App {
         if (page) {
             const pageHTML = page.render();
             pageHTML.id = App.defaultPageId;
-            App.container.append(pageHTML);
+            const header = document.querySelector('.page-header') as HTMLElement;
+            header.after(pageHTML);
         }
     }
 
     private enableRouteChange(): void {
+        window.location.hash = `${PageIds.MainPage}`;
         window.addEventListener('hashchange', () => {
             const hash = window.location.hash.slice(1);
             App.renderNewPage(hash);
