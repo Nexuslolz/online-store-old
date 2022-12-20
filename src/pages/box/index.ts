@@ -7,6 +7,7 @@ class BoxPage extends Page {
 
     render(): HTMLElement {
         console.log('box');
+        this.container.textContent = `box`;
         return this.container;
     }
 }
