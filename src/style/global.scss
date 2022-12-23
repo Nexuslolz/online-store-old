@@ -3,11 +3,12 @@
 
 html {
     max-width: 1920px;
-    margin: 0.5em auto;
     display: flex;
     height: 100%;
     font-size: 16px;
     justify-content: center;
+    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin: 0 auto;
 }
 
 body {
@@ -15,17 +16,46 @@ body {
     flex-direction: column;
     align-items: center;
     justify-content: space-between;
-    width: 95%;
+    width: 100%;
+    height: max-content;
+    min-height: 100%;
     margin: 0 auto;
 }
 
 .page-header,
 .page-footer{
+    padding: 0.5em 0;
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
     width: 100%;
     align-items: center;
     justify-items: center;
+}
+
+.page-header__info{
+    font-size: 28px;
+    text-decoration: underline;
+    text-shadow: 0 0 10px $shadow-color;
+}
+.box{
+    position: relative;
+}
+.box__amount{
+    background-color: rgba(255, 255, 255, 0.9);
+    box-shadow: inset 0 0 3px 2px gray,
+    0 0 2px 1px gray;
+    border-radius: 50%;
+    position: absolute;
+    top: -48%;
+    left: 27%;
+    width: 30px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    font-size: 18px;
+    background-clip: blur(5px);
 }
 
 .page-main{
