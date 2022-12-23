@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 abstract class Wrapper {
     protected wrapper: HTMLElement;
 
@@ -9,11 +10,10 @@ abstract class Wrapper {
         return elem;
     }
 
-    createWrapper(): void {
+    createWrapper(side?: string): void {
         console.log(this.wrapper);
     }
 
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     render(side?: string): HTMLElement {
         return this.wrapper;
     }
