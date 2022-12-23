@@ -13,7 +13,8 @@ abstract class Wrapper {
         console.log(this.wrapper);
     }
 
-    render(): HTMLElement {
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    render(side?: string): HTMLElement {
         return this.wrapper;
     }
 }
