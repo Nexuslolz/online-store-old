@@ -39,7 +39,8 @@ class Header extends Component {
         const price = document.createElement('span') as HTMLSpanElement;
         price.classList.add('page-header__price');
         price.textContent = `0$`;
-        boxInfo.textContent = `Total price: ${price.textContent}`;
+        boxInfo.textContent = `Общая стоимость: `;
+        boxInfo.append(price);
 
         const amount = document.createElement('p') as HTMLParagraphElement;
         amount.classList.add('box__amount');
