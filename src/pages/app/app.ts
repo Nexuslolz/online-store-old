@@ -5,6 +5,8 @@ import BoxPage from '../box/index';
 import DescribePage from '../description/index';
 import ErrorPage, { ErrorTypes } from '../error/index';
 import Footer from '../../components/footer/index';
+import Card from '../../components/main/card';
+import dataBase from '../../data';
 
 export const enum PageIds {
     MainPage = 'main-page',
@@ -13,6 +15,7 @@ export const enum PageIds {
 }
 
 class App {
+    protected card: Card;
     private static container: HTMLElement = document.body;
     private initialPage: MainPage;
     private header: Header;
@@ -48,6 +51,11 @@ class App {
         window.addEventListener('hashchange', () => {
             const hash = window.location.hash.slice(1);
             App.renderNewPage(hash);
+            if (hash === `${PageIds.MainPage}`) {
+                for (let i = 0; i < dataBase.products.length; i++) {
+                    this.card.result(i);
+                }
+            }
         });
     }
 
@@ -55,11 +63,15 @@ class App {
         this.header = new Header('header', 'page-header');
         this.initialPage = new MainPage('main-page');
         this.footer = new Footer('footer', 'page-footer');
+        this.card = new Card();
     }
 
     run(): void {
         App.container.append(this.header.render());
         App.renderNewPage('main-page');
+        for (let i = 0; i < dataBase.products.length; i++) {
+            this.card.result(i);
+        }
         App.container.append(this.footer.render());
         this.enableRouteChange();
     }
