@@ -22,7 +22,8 @@ class Card {
         wrapper.classList.add('left-content__card');
         wrapper.classList.add('card');
         wrapper.style.visibility = 'hidden';
-        setTimeout(elemLoader, 3000);
+        // setTimeout(elemLoader, 3000);
+        elemLoader();
 
         return wrapper;
     }
@@ -119,8 +120,8 @@ class Card {
         img.classList.add('card-list__img');
         img.setAttribute('data', `${dataBase.products[i].thumbnail}`);
         wrapper.append(img);
-        setTimeout(imgLoader, 3000);
-        // imgLoader();
+        // setTimeout(imgLoader, 3000);
+        imgLoader();
         wrapper.append(header);
         wrapper.append(infoBlock);
         wrapper.append(panel);
