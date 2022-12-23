@@ -7,6 +7,7 @@ import ErrorPage, { ErrorTypes } from '../error/index';
 import Footer from '../../components/footer/index';
 import Card from '../../components/main/card';
 import dataBase from '../../data';
+import isLoaded from '../../components/main/loader/check-loading';
 
 export const enum PageIds {
     MainPage = 'main-page',
@@ -53,8 +54,9 @@ class App {
             App.renderNewPage(hash);
             if (hash === `${PageIds.MainPage}`) {
                 for (let i = 0; i < dataBase.products.length; i++) {
-                    this.card.result(i);
+                    this.card.render(i);
                 }
+                isLoaded();
             }
         });
     }
@@ -70,9 +72,10 @@ class App {
         App.container.append(this.header.render());
         App.renderNewPage('main-page');
         for (let i = 0; i < dataBase.products.length; i++) {
-            this.card.result(i);
+            this.card.render(i);
         }
         App.container.append(this.footer.render());
+        // isLoaded();
         this.enableRouteChange();
     }
 }
