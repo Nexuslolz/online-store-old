@@ -2,7 +2,10 @@
 import Data from '../../types/data-types';
 import dataBase from '../../data';
 import elemLoader from './loader/loader-element';
-import winLoader from './loader/loader-window';
+// import winLoader from './loader/loader-window';
+import imgLoader from './loader/loader-img';
+
+// let index = 0;
 
 interface IDataWrapper {
     products: Data;
@@ -19,7 +22,7 @@ class Card {
         wrapper.classList.add('left-content__card');
         wrapper.classList.add('card');
         wrapper.style.visibility = 'hidden';
-        elemLoader();
+        setTimeout(elemLoader, 3000);
 
         return wrapper;
     }
@@ -41,29 +44,38 @@ class Card {
         const panel = document.createElement('div') as HTMLDivElement;
         panel.classList.add('card-panel');
 
-        const addBtn = document.createElement('button');
+        const addBtn = document.createElement('button') as HTMLButtonElement;
         addBtn.classList.add('card-panel__btn');
         addBtn.classList.add('add-btn');
-        addBtn.textContent = 'Add to cart';
-        const infoBtn = document.createElement('button');
+        // index++;
+        // addBtn.id = `${index}`;
+        addBtn.textContent = 'добавить';
+        const infoBtn = document.createElement('button') as HTMLButtonElement;
         infoBtn.classList.add('card-panel__btn');
         infoBtn.classList.add('info-btn');
-        infoBtn.textContent = 'Details';
+        infoBtn.textContent = 'Детали';
 
         addBtn.addEventListener('click', (event) => {
             addBtn.classList.toggle('add-btn_active');
-            const amount = document.querySelector('.box__amount');
-            const wrapper = document.querySelectorAll('.card');
+            const amount = document.querySelector('.box__amount') as HTMLDivElement;
+            const wrapper = document.querySelectorAll('.card') as NodeListOf<HTMLDivElement>;
 
-            if (addBtn.classList.contains('add-btn_active') && amount !== null && wrapper !== null) {
-                amount.textContent = `${Number(amount.textContent) + 1}`;
-                addBtn.textContent = 'Drop from';
-                event.target.closest('.card').style.boxShadow = '0 0 6px 5px #5ce77a';
-            } else {
-                if (amount !== null && wrapper !== null) {
+            let evt;
+            if (event.target !== null && event.target instanceof HTMLElement) {
+                evt = event.target.closest('.card');
+            }
+            // && wrapper instanceof HTMLDivElement
+            if (amount !== null && wrapper !== null && evt !== null && evt !== undefined) {
+                if (addBtn.classList.contains('add-btn_active')) {
+                    // localStorage.setItem(`${addBtn.id}_card-class`, `add-btn_active`);
+                    amount.textContent = `${Number(amount.textContent) + 1}`;
+                    addBtn.textContent = 'удалить';
+                    evt.classList.add('card_active');
+                } else {
+                    // localStorage.removeItem(`${addBtn.id}_card-class`);
                     amount.textContent = `${Number(amount.textContent) - 1}`;
-                    addBtn.textContent = 'Add to cart';
-                event.target.closest('.card').style.boxShadow = '';
+                    addBtn.textContent = 'добавить';
+                    evt.classList.remove('card_active');
                 }
             }
         });
@@ -105,31 +117,25 @@ class Card {
 
         const img = new Image();
         img.classList.add('card-list__img');
+        img.setAttribute('data', `${dataBase.products[i].thumbnail}`);
         wrapper.append(img);
-        winLoader.open();
-
-        if (!img.src) {
-            setTimeout(() => {
-                img.src = dataBase.products[i].thumbnail;
-            }, 3000);
-            setTimeout(() => {
-                winLoader.close();
-            }, 4500);
-        }
-
+        setTimeout(imgLoader, 3000);
+        // imgLoader();
         wrapper.append(header);
         wrapper.append(infoBlock);
         wrapper.append(panel);
 
         return wrapper;
     }
-    result(i: number) {
-        const wrap = document.querySelector('.right-content');
-        const card = this.render(i);
-        wrap?.append(card);
-    }
-    render(i: number): HTMLDivElement {
+
+    result(i: number): HTMLDivElement {
         return this.fillData(this.dataBase, i);
+    }
+
+    render(i: number) {
+        const wrap = document.querySelector('.right-content');
+        const card = this.result(i);
+        wrap?.append(card);
     }
 }
 
