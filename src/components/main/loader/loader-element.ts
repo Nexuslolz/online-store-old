@@ -1,4 +1,5 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
+
 type ElemLoader = {
     root: null;
     rootMargin: string;
@@ -12,7 +13,7 @@ function elemLoader(): void {
         rootMargin: '0px',
         threshold: 0.1,
     };
-    const observer: IntersectionObserver = new IntersectionObserver(handleImage, options);
+    const observer: IntersectionObserver = new IntersectionObserver(handleElem, options);
 
     function loadElem(myElem: HTMLElement | Element): void {
         if (myElem instanceof HTMLElement) {
@@ -20,7 +21,7 @@ function elemLoader(): void {
         }
     }
 
-    function handleImage(myElem: IntersectionObserverEntry[], observer: IntersectionObserver): void {
+    function handleElem(myElem: IntersectionObserverEntry[], observer: IntersectionObserver): void {
         myElem.forEach((inlineElem: IntersectionObserverEntry) => {
             if (inlineElem.intersectionRatio > 0) {
                 loadElem(inlineElem.target);
