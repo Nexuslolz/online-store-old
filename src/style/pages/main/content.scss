@@ -1,10 +1,13 @@
-@import '../../variables.scss';
+// @import '../../variables.scss';
 
 .right-content {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
     gap: 2em;
+}
+.left-content{
+    min-height: 98%;
 }
 .card {
     box-shadow: 0 0 6px 5px $shadow-color;
@@ -19,6 +22,7 @@
     position: relative;
     overflow: hidden;
     color: white;
+    transition: 0.2s;
 }
 .card__header{
     text-transform: uppercase;
@@ -44,12 +48,12 @@
     flex-direction: row;
     align-items: center;
     justify-content: space-between;
-    gap: 10%;
+    // gap: 10%;
 }
 
 .card-panel__btn {
     @extend %btn;
-    width: 50%;
+    min-width: 30%;
 }
 
 .card-list__item{
@@ -65,4 +69,11 @@
     filter: brightness(45%);
     min-height: 100%;
     width: 100%;
+}
+.card_active{
+    box-shadow: 0 0 6px 5px #5ce77a;
+    transition: 0.2s;
+}
+.add-btn_active{
+    transition: 0.2s;
 }
