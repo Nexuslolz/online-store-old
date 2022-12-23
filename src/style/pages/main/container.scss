@@ -6,12 +6,17 @@
     width: 100%;
     height: 100%;
     margin-bottom: 10%;
-    // border: 2px solid rgba(0, 0, 255, 0.227);
 }
 
 .container-left{
-    // border: 2px solid rgba(255, 0, 0, 0.201);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
 }
 .container-right{
-    // border: 2px solid rgba(0, 128, 0, 0.17);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
 }
