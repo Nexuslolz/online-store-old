@@ -8,6 +8,8 @@ class WinLoader {
     create(): HTMLDivElement {
         const shield = document.createElement('div') as HTMLDivElement;
         shield.classList.add('loader');
+        shield.style.zIndex = '1000';
+
         const shieldText = document.createElement('span') as HTMLSpanElement;
         shieldText.classList.add('loader-text');
         shieldText.textContent = 'Loading ...';
