@@ -4,12 +4,12 @@ import dataBase from '../../data';
 import elemLoader from './loader/loader-element';
 // import winLoader from './loader/loader-window';
 import imgLoader from './loader/loader-img';
-
-// let index = 0;
-
+import setFullPrice from './box-inherit/price-maker';
 interface IDataWrapper {
     products: Data;
 }
+
+const addToBox: string[] = [];
 
 class Card {
     dataBase: IDataWrapper;
@@ -17,10 +17,12 @@ class Card {
         this.dataBase = dataBase;
     }
 
-    createWrapper(): HTMLDivElement {
+    createWrapper(id: number): HTMLDivElement {
         const wrapper = document.createElement('div') as HTMLDivElement;
+        // const addBtn = document.querySelectorAll('.add-btn');
         wrapper.classList.add('left-content__card');
         wrapper.classList.add('card');
+        wrapper.id = String(id);
         wrapper.style.visibility = 'hidden';
         // setTimeout(elemLoader, 3000);
         elemLoader();
@@ -61,7 +63,7 @@ class Card {
             const amount = document.querySelector('.box__amount') as HTMLDivElement;
             const wrapper = document.querySelectorAll('.card') as NodeListOf<HTMLDivElement>;
 
-            let evt;
+            let evt: Element | null | undefined;
             if (event.target !== null && event.target instanceof HTMLElement) {
                 evt = event.target.closest('.card');
             }
@@ -72,13 +74,16 @@ class Card {
                     amount.textContent = `${Number(amount.textContent) + 1}`;
                     addBtn.textContent = 'удалить';
                     evt.classList.add('card_active');
+                    addToBox.push(evt.id);
                 } else {
                     // localStorage.removeItem(`${addBtn.id}_card-class`);
                     amount.textContent = `${Number(amount.textContent) - 1}`;
                     addBtn.textContent = 'добавить';
                     evt.classList.remove('card_active');
+                    addToBox.pop();
                 }
             }
+            console.log(addToBox);
         });
 
         panel.append(addBtn);
@@ -98,7 +103,7 @@ class Card {
 
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
     fillData(dataBase: IDataWrapper, i: number): HTMLDivElement {
-        const wrapper = this.createWrapper();
+        const wrapper = this.createWrapper(i);
         const header = this.createHeader();
         const infoBlock = this.createInfoBlock();
         const panel = this.createPanel();
@@ -133,11 +138,18 @@ class Card {
         return this.fillData(this.dataBase, i);
     }
 
-    render(i: number) {
-        const wrap = document.querySelector('.right-content');
+    render(i: number): void {
+        const wrap = document.querySelector('.right-content') as HTMLDivElement;
         const card = this.result(i);
-        wrap?.append(card);
+        wrap.append(card);
+        if (addToBox.includes(String(i))) {
+            const getCard = document.getElementById(`${String(i)}`);
+            const addBtn = document.querySelectorAll('.add-btn');
+            getCard?.classList.add('card_active');
+            addBtn[i].classList.add('add-btn_active');
+            addBtn[i].textContent = 'удалить';
+        }
+        setFullPrice();
     }
 }
-
 export default Card;
