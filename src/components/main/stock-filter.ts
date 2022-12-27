@@ -1,5 +1,11 @@
 import Filter from '../../templates/filter';
 import dataBase from '../../data';
+import controlFromRange from './fill-filters/from-range';
+import controlFromValue from './fill-filters/from-value';
+import controlToRange from './fill-filters/to-range';
+import controlToValue from './fill-filters/to-value';
+import fillFilters from './fill-filters/fill-filters';
+import setPriorityRange from './fill-filters/priority-range';
 
 class StockFilter extends Filter {
     rangeWrapper: HTMLDivElement;
@@ -13,7 +19,7 @@ class StockFilter extends Filter {
         this.valueWrapper.classList.add('filter-value-wrapper');
     }
 
-    createElements(item: string, direction: string): HTMLDivElement {
+    createRangeElements(item: string, direction: string): HTMLDivElement {
         const range = document.createElement('input') as HTMLInputElement;
         range.classList.add('filter__input');
         range.classList.add(`input-${item}`);
@@ -21,6 +27,13 @@ class StockFilter extends Filter {
         range.id = `${direction}-slider`;
         range.setAttribute(`min`, '0');
         range.setAttribute(`max`, '50');
+
+        if (item == 'min') {
+            range.setAttribute('value', '5');
+        } else {
+            range.setAttribute('value', '45');
+        }
+
         const rangeLength = 2;
         if (this.rangeWrapper.querySelectorAll('.filter__input').length < rangeLength) {
             this.rangeWrapper.append(range);
@@ -29,7 +42,7 @@ class StockFilter extends Filter {
         return this.rangeWrapper;
     }
 
-    createMoreElements(val: string, min: number, max: number, direction: string): HTMLDivElement {
+    createValueElements(val: string, min: number, max: number, direction: string): HTMLDivElement {
         const value = document.createElement('div') as HTMLDivElement;
         value.classList.add('filter__value');
         value.classList.add(`value-${val}`);
@@ -77,15 +90,14 @@ class StockFilter extends Filter {
         if (this.valueWrapper.querySelectorAll('.filter__value').length < valueLength) {
             this.valueWrapper.append(value);
         }
-
         return this.valueWrapper;
     }
 
     appendElements(item: string, direction: string, val: string, min: number, max: number): HTMLDivElement {
         this.header.textContent = 'Остаток';
 
-        this.createElements(item, direction);
-        this.createMoreElements(val, min, max, direction);
+        this.createRangeElements(item, direction);
+        this.createValueElements(val, min, max, direction);
 
         this.wrapper.append(this.header);
         this.wrapper.append(this.rangeWrapper);
@@ -94,12 +106,29 @@ class StockFilter extends Filter {
         return this.wrapper;
     }
 
-    render(): void {
+    onChange(num: number) {
+        const fromRange = document.querySelectorAll('#from-slider') as NodeListOf<HTMLInputElement>;
+        const toRange = document.querySelectorAll('#to-slider') as NodeListOf<HTMLInputElement>;
+        const fromValue = document.querySelectorAll('#from-input') as NodeListOf<HTMLInputElement>;
+        const toValue = document.querySelectorAll('#to-input') as NodeListOf<HTMLInputElement>;
+
+        fillFilters(fromRange[num], toRange[num], '#c6c6c6', '#5ce77a', toRange[num]);
+        setPriorityRange(toRange[num]);
+
+        fromRange[num].oninput = () => controlFromRange(fromRange[num], toRange[num], fromValue[num]);
+        toRange[num].oninput = () => controlToRange(fromRange[num], toRange[num], toValue[num]);
+        fromValue[num].oninput = () => controlFromValue(fromRange[num], fromValue[num], toValue[num], toRange[num]);
+        toValue[num].oninput = () => controlToValue(toRange[num], fromValue[num], toValue[num], toRange[num]);
+    }
+
+    render(): HTMLDivElement {
         const mainWrapper = document.querySelector('.left-content') as HTMLDivElement;
         const newBlockMin = this.appendElements('min', 'from', 'min', 0, 50);
         const newBlockMax = this.appendElements('max', 'to', 'max', 0, 50);
         mainWrapper.append(newBlockMin);
         mainWrapper.append(newBlockMax);
+        this.onChange(1);
+        return mainWrapper;
     }
 }
 
