@@ -7,7 +7,11 @@ import ErrorPage, { ErrorTypes } from '../error/index';
 import Footer from '../../components/footer/index';
 import Card from '../../components/main/card';
 import dataBase from '../../data';
-import isLoaded from '../../components/main/loader/check-loading';
+// import isLoaded from '../../components/main/loader/check-loading';
+import CategoryFilter from '../../components/main/category-filter';
+import BrandFilter from '../../components/main/brand-filter';
+import PriceFilter from '../../components/main/price-filter';
+import StockFilter from '../../components/main/stock-filter';
 
 export const enum PageIds {
     MainPage = 'main-page',
@@ -16,7 +20,11 @@ export const enum PageIds {
 }
 
 class App {
-    protected card: Card;
+    private categoryFilter: CategoryFilter;
+    private brandFilter: BrandFilter;
+    private priceFilter: PriceFilter;
+    private stockFilter: StockFilter;
+    private card: Card;
     private static container: HTMLElement = document.body;
     private initialPage: MainPage;
     private header: Header;
@@ -53,10 +61,7 @@ class App {
             const hash = window.location.hash.slice(1);
             App.renderNewPage(hash);
             if (hash === `${PageIds.MainPage}`) {
-                for (let i = 0; i < dataBase.products.length; i++) {
-                    this.card.render(i);
-                }
-                isLoaded();
+                this.compile();
             }
         });
     }
@@ -66,17 +71,29 @@ class App {
         this.initialPage = new MainPage('main-page');
         this.footer = new Footer('footer', 'page-footer');
         this.card = new Card();
+        this.categoryFilter = new CategoryFilter();
+        this.brandFilter = new BrandFilter();
+        this.priceFilter = new PriceFilter();
+        this.stockFilter = new StockFilter();
+    }
+
+    compile(): void {
+        for (let i = 0; i < dataBase.products.length; i++) {
+            this.card.render(i);
+        }
+        this.categoryFilter.render();
+        this.brandFilter.render();
+        this.priceFilter.render();
+        this.stockFilter.render();
+        // isLoaded();
     }
 
     run(): void {
         App.container.append(this.header.render());
         App.renderNewPage('main-page');
-        for (let i = 0; i < dataBase.products.length; i++) {
-            this.card.render(i);
-        }
         App.container.append(this.footer.render());
-        // isLoaded();
         this.enableRouteChange();
+        this.compile();
     }
 }
 
