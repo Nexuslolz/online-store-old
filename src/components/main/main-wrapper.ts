@@ -1,6 +1,7 @@
 import Wrapper from '../../templates/wrapper';
 import smaller from '../../assets/icons/smaller.svg';
 import bigger from '../../assets/icons/bigger.svg';
+import BrandFilter from './brand-filter';
 
 function createPanel(side: string, wrapper: HTMLDivElement) {
     if (side === 'left') {
@@ -18,7 +19,7 @@ function createPanel(side: string, wrapper: HTMLDivElement) {
         wrapper.append(copyBtn);
     } else if (side === 'right') {
         const sortingSelect = document.createElement('select') as HTMLSelectElement;
-        sortingSelect.classList.add('left-panel__options');
+        sortingSelect.classList.add('right-panel__options');
         sortingSelect.classList.add('options-list');
 
         const priceSorting = document.createElement('option') as HTMLOptionElement;
@@ -33,20 +34,20 @@ function createPanel(side: string, wrapper: HTMLDivElement) {
         sortingSelect.append(discountSorting);
 
         const totalCards = document.createElement('p') as HTMLParagraphElement;
-        totalCards.classList.add('left-panel__total-cards');
+        totalCards.classList.add('right-panel__total-cards');
 
         const totalCountCards = document.createElement('span') as HTMLSpanElement;
-        totalCountCards.classList.add('left-panel__count');
+        totalCountCards.classList.add('right-panel__count');
         totalCards.textContent = `Всего найдено: `;
         totalCountCards.textContent = '0';
         totalCards.append(totalCountCards);
 
         const searchInput = document.createElement('input') as HTMLInputElement;
-        searchInput.classList.add('left-panel__search');
+        searchInput.classList.add('right-panel__search');
         searchInput.setAttribute('placeholder', 'Найти продукт');
 
         const viewChoiseWrapper = document.createElement('div') as HTMLDivElement;
-        viewChoiseWrapper.classList.add('left-panel__view-btn-wrapper');
+        viewChoiseWrapper.classList.add('right-panel__view-btn-wrapper');
 
         const biggerView = document.createElement('button') as HTMLButtonElement;
         biggerView.classList.add('view-btn');
@@ -61,6 +62,32 @@ function createPanel(side: string, wrapper: HTMLDivElement) {
         viewChoiseWrapper.append(biggerView);
         viewChoiseWrapper.append(smallerView);
 
+        biggerView.addEventListener('click', () => {
+            const card = document.querySelectorAll('.card') as NodeListOf<HTMLDivElement>;
+            const cardList = document.querySelectorAll('.card-list') as NodeListOf<HTMLUListElement>;
+            const cardHeader = document.querySelectorAll('.card__header') as NodeListOf<HTMLElement>;
+            card.forEach((elem, idx) => {
+                elem.style.width = '30em';
+                elem.style.height = '30em';
+                cardList[idx].style.top = '35%';
+                cardList[idx].style.fontSize = '20px';
+                cardHeader[idx].style.fontSize = '32px';
+            });
+        });
+
+        smallerView.addEventListener('click', () => {
+            const card = document.querySelectorAll('.card') as NodeListOf<HTMLDivElement>;
+            const cardList = document.querySelectorAll('.card-list') as NodeListOf<HTMLUListElement>;
+            const cardHeader = document.querySelectorAll('.card__header') as NodeListOf<HTMLElement>;
+            card.forEach((elem, idx) => {
+                elem.style.width = '13em';
+                elem.style.height = '16em';
+                cardList[idx].style.top = '20%';
+                cardList[idx].style.fontSize = '12px';
+                cardHeader[idx].style.fontSize = '18px';
+            });
+        });
+
         wrapper.append(sortingSelect);
         wrapper.append(totalCards);
         wrapper.append(searchInput);
@@ -71,11 +98,13 @@ function createPanel(side: string, wrapper: HTMLDivElement) {
 class MainWrapper extends Wrapper {
     protected panel: HTMLDivElement;
     protected content: HTMLDivElement;
+    protected brand: BrandFilter;
 
     constructor() {
         super();
         this.panel = document.createElement('div') as HTMLDivElement;
         this.content = document.createElement('div') as HTMLDivElement;
+        this.brand = new BrandFilter();
     }
     addClasses(side: string) {
         this.wrapper.classList.add(`container-${side}`);
