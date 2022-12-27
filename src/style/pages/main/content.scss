@@ -3,8 +3,9 @@
 .right-content {
     display: flex;
     flex-wrap: wrap;
-    justify-content: center;
-    gap: 2em;
+    justify-content: flex-start;
+    gap: 1.5em;
+    margin-left: 1.4em;
 }
 .left-content{
     min-height: 98%;
@@ -12,7 +13,7 @@
 .card {
     box-shadow: 0 0 6px 5px $shadow-color;
     border-radius: 10px;
-    padding: 20px;
+    padding: 15px 20px;
     width: 13em;
     height: 16em;
     display: flex;
@@ -22,11 +23,15 @@
     position: relative;
     overflow: hidden;
     color: white;
-    transition: 0.2s;
+    transition: 0.3s;
+    &:hover {
+        box-shadow: 0 0 16px 5px rgb(150, 150, 150);
+    }
 }
 .card__header{
     text-transform: uppercase;
     margin: 0;
+    transition: 0.2s;
 }
 
 .card-list{
@@ -40,6 +45,13 @@
     padding: 1em;
     border-radius: 5px;
     backdrop-filter: blur(5px);
+    width: 70%;
+    transition: 0.15s;
+    overflow: scroll;
+    scrollbar-color: transparent;
+    &::-webkit-scrollbar{
+        display: none;
+    }
 }
 
 .card-panel {
@@ -71,8 +83,11 @@
     width: 100%;
 }
 .card_active{
-    box-shadow: 0 0 6px 5px #5ce77a;
-    transition: 0.2s;
+    box-shadow: 0 0 6px 5px $choise-color;
+    transition: 0.3s;
+    &:hover {
+        box-shadow: 0 0 16px 5px $choise-color;
+    }
 }
 .add-btn_active{
     transition: 0.2s;
