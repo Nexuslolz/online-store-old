@@ -1,23 +1,24 @@
 .right-panel,
 .left-panel {
-    display: flex;
+    @extend %background-panel;
     flex-direction: row;
     align-items: center;
     justify-content: space-around;
     margin-bottom: 2em;
-    border-radius: 10px;
-    box-shadow: 0 0 6px 5px $shadow-color;
     width: 96%;
     height: 100%;
-    background-color: rgb(55, 55, 55);
-    color: white;
+}
+.left-panel{
+    min-height: 90px;
+    max-height: 90px;
+
 }
 .left-panel__btn{
     @extend %btn;
     height: min-content;
     width: min-content;
 }
-.left-panel__view-btn-wrapper{
+.right-panel__view-btn-wrapper{
     display: flex;
     flex-direction: row;
     gap: 2em;
@@ -43,7 +44,7 @@
     }
 }
 
-.left-panel__search{
+.right-panel__search{
     @extend %input;
     padding: 0.4em;
     transition: 0.15s
