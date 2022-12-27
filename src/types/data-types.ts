@@ -8,7 +8,7 @@ interface IData {
     category: string;
     thumbnail: string;
     images: string[];
-    discountPercentage: number;
+    discount: string;
     rating: number;
     key?: string;
     [index: string]: string | number | string[] | undefined;
