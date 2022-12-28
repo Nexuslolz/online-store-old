@@ -19,6 +19,7 @@ class BrandFilter extends Filter {
         brandCheck.id = `filter-${item}`;
         brandCheck.setAttribute('type', 'checkbox');
         brandCheck.setAttribute('name', 'filter');
+        brandCheck.setAttribute('value', `${item}`);
 
         const brandHeader = document.createElement('label') as HTMLLabelElement;
         brandHeader.classList.add('filter-list__label');
