@@ -19,6 +19,7 @@ class CategoryFilter extends Filter {
         categoryCheck.id = `filter-${item}`;
         categoryCheck.setAttribute('type', 'checkbox');
         categoryCheck.setAttribute('name', 'filter');
+        categoryCheck.setAttribute('value', `${item}`);
 
         const categoryHeader = document.createElement('label') as HTMLLabelElement;
         categoryHeader.classList.add('filter-list__label');
