@@ -12,6 +12,9 @@ import CategoryFilter from '../../components/main/category-filter';
 import BrandFilter from '../../components/main/brand-filter';
 import PriceFilter from '../../components/main/price-filter';
 import StockFilter from '../../components/main/stock-filter';
+import cardsCounter from '../../components/main/cards-counter';
+import selectSort from '../../components/main/sorting/selected-sort';
+import checkboxFilter from '../../components/main/filtration/checkbox-filter';
 
 export const enum PageIds {
     MainPage = 'main-page',
@@ -85,6 +88,14 @@ class App {
         this.brandFilter.render();
         this.priceFilter.render();
         this.stockFilter.render();
+        cardsCounter();
+        selectSort();
+        const params = document.querySelectorAll('.filter-list__input') as NodeListOf<HTMLInputElement>;
+        params.forEach((input) => {
+            input.addEventListener('change', (event: Event) => {
+                checkboxFilter(event);
+            });
+        });
         // isLoaded();
     }
 
