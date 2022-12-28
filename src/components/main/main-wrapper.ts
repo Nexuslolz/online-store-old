@@ -2,6 +2,9 @@ import Wrapper from '../../templates/wrapper';
 import smaller from '../../assets/icons/smaller.svg';
 import bigger from '../../assets/icons/bigger.svg';
 import BrandFilter from './brand-filter';
+import checkingView from './box-inherit/view-checking';
+
+let isBig = false;
 
 function createPanel(side: string, wrapper: HTMLDivElement) {
     if (side === 'left') {
@@ -22,16 +25,33 @@ function createPanel(side: string, wrapper: HTMLDivElement) {
         sortingSelect.classList.add('right-panel__options');
         sortingSelect.classList.add('options-list');
 
-        const priceSorting = document.createElement('option') as HTMLOptionElement;
-        priceSorting.classList.add('options-list__item');
-        priceSorting.textContent = `По возрастанию в цене`;
+        const defaultOption = document.createElement('option') as HTMLOptionElement;
+        defaultOption.classList.add('options-list__item');
+        defaultOption.setAttribute('disabled', 'true');
+        defaultOption.setAttribute('selected', 'true');
+        defaultOption.textContent = `Сортировать`;
 
-        const discountSorting = document.createElement('option') as HTMLOptionElement;
-        discountSorting.classList.add('options-list__item');
-        discountSorting.textContent = `По возрастанию скидки`;
+        const priceSortingMax = document.createElement('option') as HTMLOptionElement;
+        priceSortingMax.classList.add('options-list__item');
+        priceSortingMax.textContent = `Цена по возрастанию`;
 
-        sortingSelect.append(priceSorting);
-        sortingSelect.append(discountSorting);
+        const discountSortingMax = document.createElement('option') as HTMLOptionElement;
+        discountSortingMax.classList.add('options-list__item');
+        discountSortingMax.textContent = `Скидка по возрастанию`;
+
+        const priceSortingMin = document.createElement('option') as HTMLOptionElement;
+        priceSortingMin.classList.add('options-list__item');
+        priceSortingMin.textContent = `Цена по убыванию`;
+
+        const discountSortingMin = document.createElement('option') as HTMLOptionElement;
+        discountSortingMin.classList.add('options-list__item');
+        discountSortingMin.textContent = `Скидка по убыванию`;
+
+        sortingSelect.append(defaultOption);
+        sortingSelect.append(priceSortingMax);
+        sortingSelect.append(priceSortingMin);
+        sortingSelect.append(discountSortingMax);
+        sortingSelect.append(discountSortingMin);
 
         const totalCards = document.createElement('p') as HTMLParagraphElement;
         totalCards.classList.add('right-panel__total-cards');
@@ -39,7 +59,6 @@ function createPanel(side: string, wrapper: HTMLDivElement) {
         const totalCountCards = document.createElement('span') as HTMLSpanElement;
         totalCountCards.classList.add('right-panel__count');
         totalCards.textContent = `Всего найдено: `;
-        totalCountCards.textContent = '0';
         totalCards.append(totalCountCards);
 
         const searchInput = document.createElement('input') as HTMLInputElement;
@@ -53,6 +72,7 @@ function createPanel(side: string, wrapper: HTMLDivElement) {
         biggerView.classList.add('view-btn');
         biggerView.classList.add('bigger-btn');
         biggerView.style.backgroundImage = `url('${bigger}')`;
+        biggerView.id = 'big-btn';
 
         const smallerView = document.createElement('button') as HTMLButtonElement;
         smallerView.classList.add('view-btn');
@@ -63,28 +83,26 @@ function createPanel(side: string, wrapper: HTMLDivElement) {
         viewChoiseWrapper.append(smallerView);
 
         biggerView.addEventListener('click', () => {
+            isBig = true;
             const card = document.querySelectorAll('.card') as NodeListOf<HTMLDivElement>;
             const cardList = document.querySelectorAll('.card-list') as NodeListOf<HTMLUListElement>;
             const cardHeader = document.querySelectorAll('.card__header') as NodeListOf<HTMLElement>;
             card.forEach((elem, idx) => {
-                elem.style.width = '30em';
-                elem.style.height = '30em';
-                cardList[idx].style.top = '35%';
-                cardList[idx].style.fontSize = '20px';
-                cardHeader[idx].style.fontSize = '32px';
+                elem.classList.add('card_bigger');
+                cardList[idx].classList.add('card-list_bigger');
+                cardHeader[idx].classList.add('card__header_bigger');
             });
         });
 
         smallerView.addEventListener('click', () => {
+            isBig = false;
             const card = document.querySelectorAll('.card') as NodeListOf<HTMLDivElement>;
             const cardList = document.querySelectorAll('.card-list') as NodeListOf<HTMLUListElement>;
             const cardHeader = document.querySelectorAll('.card__header') as NodeListOf<HTMLElement>;
             card.forEach((elem, idx) => {
-                elem.style.width = '13em';
-                elem.style.height = '16em';
-                cardList[idx].style.top = '20%';
-                cardList[idx].style.fontSize = '12px';
-                cardHeader[idx].style.fontSize = '18px';
+                elem.classList.remove('card_bigger');
+                cardList[idx].classList.remove('card-list_bigger');
+                cardHeader[idx].classList.remove('card__header_bigger');
             });
         });
 
@@ -130,6 +148,9 @@ class MainWrapper extends Wrapper {
     render(side: string) {
         this.addClasses(side);
         this.createWrapper(side);
+        setTimeout(() => {
+            checkingView(isBig);
+        }, 1);
         return this.wrapper;
     }
 }
