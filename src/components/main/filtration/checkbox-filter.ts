@@ -1,5 +1,6 @@
 import dataBase from '../../../data';
 import Card from '../card';
+import cardsCounter from '../cards-counter';
 
 function checkboxFilter(event: Event): void {
     const cardItem = new Card();
@@ -25,12 +26,14 @@ function checkboxFilter(event: Event): void {
                     dataItem.brand === value
                 ) {
                     cardItem.render(idx);
+                    cardsCounter();
                 }
             });
         } else if (!param.checked) {
             content.innerHTML = '';
             data.forEach((dataItem, idx) => {
                 cardItem.render(idx);
+                cardsCounter();
             });
         }
     }
