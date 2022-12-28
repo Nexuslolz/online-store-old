@@ -5,6 +5,7 @@ import elemLoader from './loader/loader-element';
 // import winLoader from './loader/loader-window';
 import imgLoader from './loader/loader-img';
 import setFullPrice from './box-inherit/price-maker';
+
 interface IDataWrapper {
     products: Data;
 }
@@ -83,7 +84,6 @@ class Card {
                     addToBox.pop();
                 }
             }
-            console.log(addToBox);
         });
 
         panel.append(addBtn);
@@ -148,6 +148,18 @@ class Card {
             getCard?.classList.add('card_active');
             addBtn[i].classList.add('add-btn_active');
             addBtn[i].textContent = 'удалить';
+        }
+        const cards = document.querySelectorAll('.card') as NodeListOf<HTMLDivElement>;
+        const cardLists = document.querySelectorAll('.card-list') as NodeListOf<HTMLUListElement>;
+        const cardHead = document.querySelectorAll('.card__header') as NodeListOf<Element>;
+        const bigBtn = document.querySelector('.bigger-btn') as HTMLButtonElement;
+
+        if (bigBtn.classList.contains('bigger-btn_active')) {
+            cards.forEach((elem, idx) => {
+                elem.classList.add('card_bigger');
+                cardLists[idx].classList.add('card-list_bigger');
+                cardHead[idx].classList.add('card__header_bigger');
+            });
         }
         setFullPrice();
     }
