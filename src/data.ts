@@ -121,7 +121,7 @@ const data: IDataWrapper = {
             price: 599,
             brand: 'ПАПА ДЖОНС',
             category: 'Пицца',
-            stock: 3,
+            stock: 13,
             thumbnail: 'https://cdn.papajohns.ru//images/catalog/thumbs/full/d74222636b9758bf63b57bc9432de2e6.jpeg',
             images: [
                 'https://cdn.papajohns.ru//images/catalog/thumbs/full/d74222636b9758bf63b57bc9432de2e6.jpeg',
@@ -157,7 +157,7 @@ const data: IDataWrapper = {
             price: 899,
             brand: 'ПАПА ДЖОНС',
             category: 'Пицца',
-            stock: 4,
+            stock: 14,
             thumbnail: 'https://cdn.papajohns.ru//images/catalog/thumbs/full/0cbbd6536b44c79e2f1f57680ddebd8e.jpg',
             images: [
                 'https://cdn.papajohns.ru//images/catalog/thumbs/full/0cbbd6536b44c79e2f1f57680ddebd8e.jpg',
@@ -210,7 +210,7 @@ const data: IDataWrapper = {
             price: 659,
             brand: 'Пицца Сан',
             category: 'Пицца',
-            stock: 1,
+            stock: 11,
             thumbnail: 'https://pizzasan.goulash.tech/___/images/menuProduct/6314bc07b3b28_w900_jpg.jpg',
             images: [
                 'https://pizzasan.goulash.tech/___/images/menuProduct/6314bc07b3b28_w900_jpg.jpg',
@@ -262,7 +262,7 @@ const data: IDataWrapper = {
             price: 639,
             brand: 'Пицца Сан',
             category: 'Пицца',
-            stock: 4,
+            stock: 41,
             thumbnail: 'https://pizzasan.goulash.tech/___/images/menuProduct/6314c79ad1446_w900_jpg.jpg',
             images: [
                 'https://pizzasan.goulash.tech/___/images/menuProduct/6314c79ad1446_w900_jpg.jpg',
@@ -297,7 +297,7 @@ const data: IDataWrapper = {
             price: 555,
             brand: 'Точно Пицца',
             category: 'Пицца',
-            stock: 2,
+            stock: 12,
             thumbnail:
                 'https://img.freepik.com/premium-photo/seafood-pizza-tomato-shrimp-mediterranean-food_201836-3801.jpg',
             images: [
