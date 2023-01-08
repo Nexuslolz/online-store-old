@@ -6,6 +6,9 @@ import controlToRange from './fill-filters/to-range';
 import controlToValue from './fill-filters/to-value';
 import fillFilters from './fill-filters/fill-filters';
 import setPriorityRange from './fill-filters/priority-range';
+import checkboxFilter from './filtration/main-filter';
+
+export const STOCK_FILTER_NAME = 'stock';
 
 class StockFilter extends Filter {
     rangeWrapper: HTMLDivElement;
@@ -24,14 +27,15 @@ class StockFilter extends Filter {
         range.classList.add('filter__input');
         range.classList.add(`input-${item}`);
         range.setAttribute('type', 'range');
+        range.setAttribute('name', `${STOCK_FILTER_NAME}`);
         range.id = `${direction}-slider`;
         range.setAttribute(`min`, '0');
-        range.setAttribute(`max`, '50');
+        range.setAttribute(`max`, '60');
 
         if (item == 'min') {
-            range.setAttribute('value', '5');
+            range.setAttribute('value', '0');
         } else {
-            range.setAttribute('value', '45');
+            range.setAttribute('value', '60');
         }
 
         const rangeLength = 2;
@@ -64,8 +68,8 @@ class StockFilter extends Filter {
             valueArr.push(elem.stock);
         });
         const resultArr = [...new Set(valueArr)];
-        let numMin = 50;
-        let numMax = 0;
+        let numMin = 0;
+        let numMax = 60;
 
         if (val === 'min') {
             resultArr.forEach((elem) => {
@@ -115,16 +119,28 @@ class StockFilter extends Filter {
         fillFilters(fromRange[num], toRange[num], '#c6c6c6', '#5ce77a', toRange[num]);
         setPriorityRange(toRange[num]);
 
-        fromRange[num].oninput = () => controlFromRange(fromRange[num], toRange[num], fromValue[num]);
-        toRange[num].oninput = () => controlToRange(fromRange[num], toRange[num], toValue[num]);
-        fromValue[num].oninput = () => controlFromValue(fromRange[num], fromValue[num], toValue[num], toRange[num]);
-        toValue[num].oninput = () => controlToValue(toRange[num], fromValue[num], toValue[num], toRange[num]);
+        fromRange[num].oninput = () => {
+            controlFromRange(fromRange[num], toRange[num], fromValue[num]);
+            checkboxFilter();
+        };
+        toRange[num].oninput = () => {
+            controlToRange(fromRange[num], toRange[num], toValue[num]);
+            checkboxFilter();
+        };
+        fromValue[num].oninput = () => {
+            controlFromValue(fromRange[num], fromValue[num], toValue[num], toRange[num]);
+            checkboxFilter();
+        };
+        toValue[num].oninput = () => {
+            controlToValue(toRange[num], fromValue[num], toValue[num], toRange[num]);
+            checkboxFilter();
+        };
     }
 
     render(): HTMLDivElement {
         const mainWrapper = document.querySelector('.left-content') as HTMLDivElement;
-        const newBlockMin = this.appendElements('min', 'from', 'min', 0, 50);
-        const newBlockMax = this.appendElements('max', 'to', 'max', 0, 50);
+        const newBlockMin = this.appendElements('min', 'from', 'min', 0, 60);
+        const newBlockMax = this.appendElements('max', 'to', 'max', 0, 60);
         mainWrapper.append(newBlockMin);
         mainWrapper.append(newBlockMax);
         this.onChange(1);
