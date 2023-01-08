@@ -3,8 +3,11 @@ import smaller from '../../assets/icons/smaller.svg';
 import bigger from '../../assets/icons/bigger.svg';
 import BrandFilter from './brand-filter';
 import checkingView from './box-inherit/view-checking';
+import Card from './card';
+import dataBase from '../../data';
+import cardsCounter from './cards-counter';
 
-let isBig = false;
+export let isBig = false;
 
 function createPanel(side: string, wrapper: HTMLDivElement) {
     if (side === 'left') {
@@ -13,10 +16,37 @@ function createPanel(side: string, wrapper: HTMLDivElement) {
         resetBtn.classList.add('reset-btn');
         resetBtn.textContent = `Сбросить фильтры`;
 
+        resetBtn.addEventListener('click', () => {
+            const data = dataBase.products;
+
+            const container = document.querySelector('.right-content') as HTMLDivElement;
+            container.innerHTML = '';
+
+            const cardItem = new Card();
+            for (let i = 0; i < data.length; i++) {
+                cardItem.render(i);
+            }
+            cardsCounter();
+
+            const checkboxFilters = document.querySelectorAll('.filter-list__input') as NodeListOf<HTMLInputElement>;
+            checkboxFilters.forEach((filter) => {
+                filter.checked = false;
+            });
+        });
+
         const copyBtn = document.createElement('button') as HTMLButtonElement;
         copyBtn.classList.add('left-panel__btn');
         copyBtn.classList.add('copy-btn');
         copyBtn.textContent = `Копировать ссылку`;
+
+        copyBtn.addEventListener('click', () => {
+            const link = document.location.href;
+            navigator.clipboard.writeText(`${link}`);
+            copyBtn.textContent = `Ссылка cкопирована`;
+            setTimeout(() => {
+                copyBtn.textContent = `Копировать ссылку`;
+            }, 1500);
+        });
 
         wrapper.append(resetBtn);
         wrapper.append(copyBtn);
