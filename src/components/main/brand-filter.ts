@@ -1,6 +1,8 @@
 import dataBase from '../../data';
 import Filter from '../../templates/filter';
 
+export const BRAND_FILTER_CHECKBOX_NAME = 'filter-brand';
+
 class BrandFilter extends Filter {
     constructor() {
         super();
@@ -18,7 +20,7 @@ class BrandFilter extends Filter {
         brandCheck.classList.add('filter-list__input');
         brandCheck.id = `filter-${item}`;
         brandCheck.setAttribute('type', 'checkbox');
-        brandCheck.setAttribute('name', 'filter');
+        brandCheck.setAttribute('name', `${BRAND_FILTER_CHECKBOX_NAME}`);
         brandCheck.setAttribute('value', `${item}`);
 
         const brandHeader = document.createElement('label') as HTMLLabelElement;
