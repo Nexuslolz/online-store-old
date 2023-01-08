@@ -14,7 +14,7 @@ import PriceFilter from '../../components/main/price-filter';
 import StockFilter from '../../components/main/stock-filter';
 import cardsCounter from '../../components/main/cards-counter';
 import selectSort from '../../components/main/sorting/selected-sort';
-import checkboxFilter from '../../components/main/filtration/checkbox-filter';
+import checkboxFilter from '../../components/main/filtration/main-filter';
 
 export const enum PageIds {
     MainPage = 'main-page',
@@ -65,6 +65,12 @@ class App {
             App.renderNewPage(hash);
             if (hash === `${PageIds.MainPage}`) {
                 this.compile();
+                // const checkboxesFilters = document.querySelectorAll(
+                //     '.filter-list__input'
+                // ) as NodeListOf<HTMLInputElement>;
+                // checkboxesFilters.forEach((filter) => {
+                //     filter.checked = false;
+                // });
             }
         });
     }
@@ -92,8 +98,8 @@ class App {
         selectSort();
         const params = document.querySelectorAll('.filter-list__input') as NodeListOf<HTMLInputElement>;
         params.forEach((input) => {
-            input.addEventListener('change', (event: Event) => {
-                checkboxFilter(event);
+            input.addEventListener('change', () => {
+                checkboxFilter();
             });
         });
         // isLoaded();
