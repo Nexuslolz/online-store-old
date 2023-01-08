@@ -3,7 +3,7 @@ import Data from '../../types/data-types';
 import dataBase from '../../data';
 import elemLoader from './loader/loader-element';
 // import winLoader from './loader/loader-window';
-import imgLoader from './loader/loader-img';
+// import imgLoader from './loader/loader-img';
 import setFullPrice from './box-inherit/price-maker';
 
 interface IDataWrapper {
@@ -24,7 +24,7 @@ class Card {
         wrapper.classList.add('left-content__card');
         wrapper.classList.add('card');
         wrapper.id = String(id);
-        wrapper.style.visibility = 'hidden';
+        // wrapper.style.visibility = 'hidden';
         // setTimeout(elemLoader, 3000);
         elemLoader();
 
@@ -123,10 +123,11 @@ class Card {
 
         const img = new Image();
         img.classList.add('card-list__img');
-        img.setAttribute('data', `${dataBase.products[i].thumbnail}`);
+        // img.setAttribute('data', `${dataBase.products[i].thumbnail}`);
         wrapper.append(img);
+        img.src = dataBase.products[i].thumbnail;
         // setTimeout(imgLoader, 3000);
-        imgLoader();
+        // imgLoader();
         wrapper.append(header);
         wrapper.append(infoBlock);
         wrapper.append(panel);
