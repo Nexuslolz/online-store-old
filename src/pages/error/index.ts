@@ -14,12 +14,12 @@ class ErrorPage extends Page {
 
     createErrorTitle(): void {
         const errHeader = document.createElement('h1') as HTMLElement;
+        errHeader.classList.add('error-header');
         errHeader.textContent = `${this.errorType}`;
         this.container.append(errHeader);
     }
 
     render(): HTMLElement {
-        console.log('err');
         this.createErrorTitle();
         return this.container;
     }
