@@ -109,3 +109,13 @@ body {
     padding: 15px 40px;
     border-radius: 20px;
 }
+
+.no-product {
+    @extend %background-panel;
+    font-size: 4em;
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    background-color: #333;
+    padding: 10px 30px;
+    border-radius: 10px;
+    text-align: center;
+}
