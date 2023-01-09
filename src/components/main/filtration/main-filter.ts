@@ -82,9 +82,15 @@ function checkboxFilter(): void {
     selectSort(filteredProducts);
 
     const cardItem = new Card();
+    const wrapper = document.querySelector('.right-content') as HTMLDivElement;
+    console.log(filteredProducts);
+
     products.forEach((item, index) => {
         if (filteredProducts.includes(item)) {
             cardItem.render(index);
+        }
+        if (filteredProducts.length === 0) {
+            wrapper.innerHTML = `<div class = 'no-product'>По данному запросу товаров не найдено</div>`;
         }
     });
 
