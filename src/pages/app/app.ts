@@ -102,7 +102,7 @@ class App {
                 checkboxFilter();
             });
         });
-        // isLoaded();
+        console.log('Оценка: 140 баллов');
     }
 
     run(): void {
