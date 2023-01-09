@@ -5,6 +5,7 @@ import elemLoader from './loader/loader-element';
 // import winLoader from './loader/loader-window';
 // import imgLoader from './loader/loader-img';
 import setFullPrice from './box-inherit/price-maker';
+import Buy from '../modal-win/buy-window';
 
 interface IDataWrapper {
     products: Data;
@@ -57,7 +58,12 @@ class Card {
         const infoBtn = document.createElement('button') as HTMLButtonElement;
         infoBtn.classList.add('card-panel__btn');
         infoBtn.classList.add('info-btn');
-        infoBtn.textContent = 'Детали';
+        infoBtn.textContent = 'Купить';
+
+        infoBtn.addEventListener('click', () => {
+            const modalWindow = new Buy();
+            modalWindow.render();
+        });
 
         addBtn.addEventListener('click', (event) => {
             addBtn.classList.toggle('add-btn_active');
