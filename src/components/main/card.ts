@@ -6,6 +6,7 @@ import elemLoader from './loader/loader-element';
 // import imgLoader from './loader/loader-img';
 import setFullPrice from './box-inherit/price-maker';
 import Buy from '../modal-win/buy-window';
+import goToDesc from '../../pages/description/go-to';
 
 interface IDataWrapper {
     products: Data;
@@ -169,6 +170,7 @@ class Card {
             });
         }
         setFullPrice();
+        goToDesc();
     }
 }
 export default Card;
