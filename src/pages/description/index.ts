@@ -5,7 +5,8 @@ class DescribePage extends Page {
         super(id);
     }
     render(): HTMLElement {
-        console.log('desc');
+        console.log('description');
+        this.container.textContent = `description`;
         return this.container;
     }
 }
