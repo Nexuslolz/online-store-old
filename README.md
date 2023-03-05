@@ -1,4 +1,4 @@
 # Online-store
 
-- For starting project use:
-  `npm run start`
+-   For starting project use:
+    `npm run start`

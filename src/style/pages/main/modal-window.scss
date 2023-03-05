@@ -1,0 +1,114 @@
+@keyframes open {
+    0% {
+        visibility: hidden;
+        opacity: 0;
+    }
+    100% {
+        visibility: visible;
+        opacity: 1;
+    }
+}
+@keyframes close {
+    0% {
+        visibility: visible;
+        opacity: 1;
+    }
+    100% {
+        visibility: hidden;
+        opacity: 0;
+    }
+}
+
+.product-form__overlay {
+    visibility: hidden;
+    opacity: 0;
+    animation: close 0.2s forwards ease-in-out;
+    background-color: rgba(0, 0, 0, 0.45);
+    backdrop-filter: blur(3px);
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    z-index: 50;
+}
+.product-form {
+    @extend %background-panel;
+    visibility: hidden;
+    opacity: 0;
+    animation: close 0.2s forwards ease-in-out;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    position: fixed;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1em 5em;
+    height: 90%;
+    max-height: 580px;
+    z-index: 55;
+    width: 24vw;
+}
+.details,
+.card-info{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: space-between;
+}
+.details-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1em;
+    width: 100%;
+    height: 100%;
+}
+
+.card-info-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1em;
+    width: 100%;
+    height: 100%;
+    position: relative;
+}
+
+.product-form__overlay_active {
+    animation: open 0.2s forwards ease-in-out;}
+.product-form_active {
+    animation: open 0.2s forwards ease-in-out;}
+
+.product-form__btn {
+    @extend %btn;
+    max-height: 8%;
+}
+
+.product-form__input {
+    @extend %input;
+    width: 100%;
+    height: 15%;
+}
+
+.product-form__input_invalid {
+    background-color: rgb(255, 161, 161);
+}
+
+.form-img {
+    position: absolute;
+    width: 40px;
+    height: 20px;
+    top: 4%;
+    left: 90%;
+}
+
+.product-form_sended{
+    height: max-content;
+}
+
+.form-send {
+    text-align: center;
+    font-size: 2.5em;
+}

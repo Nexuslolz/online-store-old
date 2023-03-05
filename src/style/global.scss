@@ -1,0 +1,121 @@
+@import './variables.scss';
+@import './pages/main/global.scss';
+@import './pages/main/modal-window.scss';
+
+html {
+    max-width: 1920px;
+    display: flex;
+    height: 100%;
+    font-size: 16px;
+    justify-content: center;
+    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin: 0 auto;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    height: max-content;
+    min-height: 100%;
+    margin: 0 auto;
+}
+
+.page-header,
+.page-footer{
+    padding: 0.5em 0;
+    display: grid;
+    grid-template-columns: 1fr 4fr 1fr;
+    width: 98%;
+    align-items: center;
+    justify-items: center;
+}
+
+.page-header{
+    margin-bottom: 1em;
+}
+
+.page-header__info{
+    font-size: 28px;
+    text-decoration: underline;
+    text-shadow: 0 0 10px $shadow-color;
+}
+.box{
+    position: relative;
+}
+.box__amount{
+    background-color: rgba(255, 255, 255, 0.9);
+    box-shadow: inset 0 0 3px 2px gray,
+    0 0 2px 1px gray;
+    border-radius: 50%;
+    position: absolute;
+    top: -48%;
+    left: 27%;
+    width: 30px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    font-size: 18px;
+    background-clip: blur(5px);
+}
+
+.page-main{
+    width: 97%;
+    height: 100%;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.page-footer__wrapper{
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    justify-content: center;
+}
+
+.page-footer__prod{
+    margin-right: 1em;
+}
+
+.page-footer__prod{
+    transition: 0.15s;
+    &:hover{
+        transition: 0.15s;
+        transform: scale(1.1);
+    }
+}
+
+.footer__img{
+    width: 30px;
+    height: 30px;
+}
+
+.visually-hidden {
+    visibility: hidden;
+}
+
+.error-header{
+    @extend %background-panel;
+    font-size: 7em;
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    background-color: #333;
+    padding: 15px 40px;
+    border-radius: 20px;
+}
+
+.no-product {
+    @extend %background-panel;
+    font-size: 4em;
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    background-color: #333;
+    padding: 10px 30px;
+    border-radius: 10px;
+    text-align: center;
+}

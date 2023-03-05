@@ -1,0 +1,28 @@
+.loader{
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(60, 60, 60, 0.85);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.loader-text{
+    animation: open 2s infinite linear;
+    color: white;
+    font-size: 5em;
+}
+@keyframes open {
+    0% {
+        visibility: visible;
+        opacity: 1;
+    }
+    50% {
+        visibility: hidden;
+        opacity: 0;
+    }
+    100% {
+        visibility: visible;
+        opacity: 1;
+    }
+    
+}

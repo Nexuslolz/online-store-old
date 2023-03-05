@@ -1,0 +1,59 @@
+.right-panel,
+.left-panel {
+    @extend %background-panel;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-around;
+    margin-bottom: 2em;
+    width: 96%;
+    height: 100%;
+}
+.right-panel{
+    max-height: 50px;
+}
+.left-panel{
+    min-height: 90px;
+    max-height: 90px;
+
+}
+.left-panel__btn{
+    @extend %btn;
+    height: min-content;
+    width: min-content;
+}
+.right-panel__view-btn-wrapper{
+    display: flex;
+    flex-direction: row;
+    gap: 2em;
+}
+
+.view-btn {
+    border: none;
+    width: 2em;
+    height: 2em;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: 70%;
+    background-color: $ligher-color;
+    padding: 1em;
+    border-radius: 5px;
+    transition: 0.2s;
+    cursor: pointer;
+    &:hover {
+        transform: scale(1.1);
+    }
+    &:active {
+        transform: scale(1);
+    }
+}
+
+.right-panel__search{
+    @extend %input;
+    padding: 0.4em;
+    transition: 0.15s
+}
+.options-list{
+    @extend %input;
+    transition: 0.15s
+}
+.options-list__item{}
